@@ -11,7 +11,7 @@ const Navbar = () => {
   const { isSignedIn } = useClerk();
   const { user } = useUser();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div
@@ -54,9 +54,14 @@ const Navbar = () => {
           {!isSignedIn ? (
             <></>
           ) : (
-            <div className="flex items-center gap-1 sm:gap-5 text-gray-500 text-sm">
-              <button>Become Educator</button> |
-              <Link to="/my-enrollments">My Enrollments</Link>
+            <div className="flex items-center gap-1 sm:gap-5 text-gray-500 text-xs">
+              <button className="text-center leading-tight mr-1 sm:mr-0">
+                Become Educator
+              </button>{" "}
+              |
+              <Link to="/my-enrollments" className="ml-1 leading-tight">
+                My Enrollments
+              </Link>
             </div>
           )}
         </div>
