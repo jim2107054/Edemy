@@ -40,7 +40,7 @@ const CourseCard = ({ course }) => {
                   className="w-3.5 h-3.5"
                   key={i}
                   src={src}
-                  alt={type + " star"}
+                  alt={rating + " star rating"}
                 />
               );
             })}
