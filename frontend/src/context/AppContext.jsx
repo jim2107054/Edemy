@@ -6,8 +6,10 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const currency = import.meta.env.VITE_CURRENCY || "$";
-  const [allCourses, setAllCourses] = useState([]);
   const navigate = useNavigate();
+
+  const [allCourses, setAllCourses] = useState([]);
+  const [isEducator, setIsEducator] = useState(true);
 
   //function to calculate average rating of a course
   const calculateRating = (course)=>{
@@ -34,6 +36,8 @@ export const AppContextProvider = ({ children }) => {
     allCourses,
     navigate,
     calculateRating,
+    isEducator,
+    setIsEducator,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
