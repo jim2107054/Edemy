@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "./../../assets/assets";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { AppContext } from "../../context/AppContext";
 
 const Navbar = () => {
   //if the url pathname includes 'courseList' then bg color should be white, if it's false then we add another bg color
@@ -11,7 +12,7 @@ const Navbar = () => {
   const { isSignedIn } = useClerk();
   const { user } = useUser();
 
-  const navigate = useNavigate();
+  const {navigate,isEducator,setIsEducator} = useContext(AppContext)
 
   return (
     <div
@@ -32,7 +33,7 @@ const Navbar = () => {
             <></>
           ) : (
             <div className="flex items-center gap-5">
-              <button>Become Educator</button> |
+              <button onClick={()=>navigate('/instructor')}>{isEducator?"Educator Dashboard":"Become Educator"}</button> |
               <Link to="/my-enrollments">My Enrollments</Link>
             </div>
           )}
@@ -55,9 +56,7 @@ const Navbar = () => {
             <></>
           ) : (
             <div className="flex items-center gap-1 sm:gap-5 text-gray-500 text-xs">
-              <button className="text-center leading-tight mr-1 sm:mr-0">
-                Become Educator
-              </button>{" "}
+              <button onClick={()=>navigate('/instructor')}>{isEducator?"Educator Dashboard":"Become Educator"}</button>
               |
               <Link to="/my-enrollments" className="ml-1 leading-tight">
                 My Enrollments
