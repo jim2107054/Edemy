@@ -7,8 +7,8 @@ const CallToAction = () => {
       <h1 className='text-2xl md:text-4xl text-gray-800 font-medium'>Learn anything, anytime, anywhere</h1>
       <p className='text-gray-600 sm:text-sm'>Incididunt sint fugiat pariatur cupidatat consectetur sit cillum anim id veniam aliqua proident excepteur commodo do ea.</p>
       <div className='flex items-center font-medium gap-6 mt-4'>
-        <button className='px-10 py-3 rounded-md text-white bg-blue-600'>Get started</button>
-        <button className='flex items-center gap-2 border border-gray-400 px-7 py-3 rounded-md'>Learn more <img src={assets.arrow_icon} alt="arrow_icon" /></button>
+        <button className='px-10 py-3 rounded-md hover:scale-105 transition-all duration-300 text-white bg-blue-600'>Get started</button>
+        <button className='flex items-center gap-2 hover:scale-105 transition-all duration-300 border border-gray-400 px-7 py-3 rounded-md'>Learn more <img src={assets.arrow_icon} alt="arrow_icon" /></button>
       </div>
     </div>
   )
