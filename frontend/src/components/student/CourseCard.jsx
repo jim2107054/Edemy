@@ -4,14 +4,7 @@ import { AppContext } from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
 const CourseCard = ({ course }) => {
-  const { currency, calculateRating } = useContext(AppContext);
-  // Helper to determine star type: full, half, or empty
-  const getStarType = (rating, index) => {
-    // console.log("rating and index", rating, index);
-    if (rating >= index + 1) return "full";
-    if (rating >= index + 0.5) return "half";
-    return "empty";
-  };
+  const { currency, calculateRating, getStarType } = useContext(AppContext);
 
   //calculate the average rating of the course
   const rating = calculateRating(course);
@@ -24,8 +17,10 @@ const CourseCard = ({ course }) => {
     >
       <img className="w-full" src={course.courseThumbnail} alt="" />
       <div className="p-3 text-left">
-        <h3 className="text-base font-semibold line-clamp-1">{course.courseTitle}</h3>
-        <p className="text-gray-500">{course.educator.name}</p>
+        <h3 className="text-base font-semibold line-clamp-1">
+          {course.courseTitle}
+        </h3>
+        <p className="text-gray-500">Jahid Hasan Jim</p>
         <div className="flex items-center space-x-2">
           <p>{rating}</p>
           <div className="flex">
