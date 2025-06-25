@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets, dummyTestimonial } from "../../assets/assets";
+import { AppContext } from "../../context/AppContext";
 
 const TestimonialsSection = () => {
-  //Healper to determine star type: full, half, or empty
-  const getStarType = (rating, index) => {
-    if (rating >= index + 1) return "full";
-    if (rating >= index + 0.5) return "half";
-    return "empty";
-  };
+  const {getStarType} = useContext(AppContext)
+  
   return (
     <div className="pb-14 px-8 md:px-0">
       <h2 className="text-3xl font-medium text-gray-800">Testimonials</h2>
