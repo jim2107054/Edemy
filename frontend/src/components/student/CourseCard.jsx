@@ -7,7 +7,7 @@ const CourseCard = ({ course }) => {
   const { currency, calculateRating } = useContext(AppContext);
   // Helper to determine star type: full, half, or empty
   const getStarType = (rating, index) => {
-    console.log("rating and index", rating, index);
+    // console.log("rating and index", rating, index);
     if (rating >= index + 1) return "full";
     if (rating >= index + 0.5) return "half";
     return "empty";
