@@ -22,6 +22,15 @@ export const AppContextProvider = ({ children }) => {
     return (totalRating/course.courseRatings.length).toFixed(1)
   }
 
+  // add the star rating logic
+  // Helper to determine star type: full, half, or empty
+  const getStarType = (rating, index) => {
+    // console.log("rating and index", rating, index);
+    if (rating >= index + 1) return "full";
+    if (rating >= index + 0.5) return "half";
+    return "empty";
+  };
+
   //fetch all courses
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
@@ -38,6 +47,7 @@ export const AppContextProvider = ({ children }) => {
     calculateRating,
     isEducator,
     setIsEducator,
+    getStarType,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
