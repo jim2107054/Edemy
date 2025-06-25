@@ -40,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
       {/*-------- show the copy@right message--------*/}
-      <p className='text-xs md:text-sm text-white/70 text-center py-2'>Copyright 2025 © Edemy. All Right Reserved.</p>
+      <p className='text-xs md:text-sm text-white/70 text-center py-2'>Copyright 2025 © Edemy. All Right Reserved.(jim2107054)</p>
     </footer>
   )
 }
