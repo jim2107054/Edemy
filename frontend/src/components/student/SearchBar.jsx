@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 
-const SearchBar = ({data}) => {
+const SearchBar = ({ data }) => {
   const navigate = useNavigate();
   const [input, setInput] = useState(data ? data : "");
 
   const onSearchHandler = (e) => {
-    // Prevent default form submission
     e.preventDefault();
     if (input.trim() === "") return;
     navigate("/course-list/" + input.toLowerCase());
   };
+
+  const onInputChange = (e) => {
+    const value = e.target.value;
+    setInput(value);
+    navigate("/course-list/" + value.toLowerCase(), { replace: true });
+  };
+
   return (
     <form
       onSubmit={onSearchHandler}
@@ -24,7 +30,7 @@ const SearchBar = ({data}) => {
       />
       <input
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={onInputChange}
         className="w-full h-full outline-none shadow-md text-gray-500/80"
         type="text"
         placeholder="Search for courses"
