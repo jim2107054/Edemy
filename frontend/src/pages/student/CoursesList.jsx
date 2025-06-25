@@ -58,7 +58,7 @@ const CoursesList = () => {
           <div className="inline-flex items-center gap-4 px-4 py-2 border mt-8 -mb-8 text-gray-600">
             <p>{input}</p>
             <img
-              onClick={() => {navigate("/course-list"); scrollTo(0, 0);input("")}}
+              onClick={() => {navigate("/course-list"); scrollTo(0, 0);}}
               src={assets.cross_icon}
               alt=""
               className="cursor-pointer text-gray-700 font-medium"
