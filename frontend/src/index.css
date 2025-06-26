@@ -8,6 +8,16 @@
     font-family: Outfit, Poppins, Roboto, sans-serif;
 }
 
+@layer base{
+    html{
+        scroll-behavior: smooth;
+    }
+}
+
+::-webkit-scrollbar{
+    display:none;
+}
+
 .rich-text {font-size: 15px; color: #7A7B7D;}
 .rich-text p {margin-bottom: 16px;}
 .rich-text h1 {font-size: 36px; font-weight: 800; color: #252525; margin: 32px 0;}
