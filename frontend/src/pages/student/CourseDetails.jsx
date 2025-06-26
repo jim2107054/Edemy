@@ -53,13 +53,13 @@ const CourseDetails = () => {
             {courseData.courseTitle}
           </h1>
           <p
-            className="pt-4 md:text-base text-sm text-gray-600"
+            className="pt-4 md:text-base line-clamp-3 text-sm text-gray-600"
             dangerouslySetInnerHTML={{
-              __html: courseData.courseDescription.slice(0, 200),
+              __html: courseData.courseDescription,
             }}
           ></p>
           {/*------Review and rating----------*/}
-          <div className="flex items-center space-x-2 pt-2 pb-1 text-sm">
+          <div className="flex text-xs items-center space-x-2 pt-2 pb-1 sm:text-sm">
             <p>{calculateRating(courseData)}</p>
             <div className="flex">
               {[...Array(5)].map((_, i) => {
@@ -110,8 +110,12 @@ const CourseDetails = () => {
                   >
                     <div className="flex items-center gap-2">
                       <img
-                      className={`transform transition-transform ${openSections[index] ? "rotate-180" : ""}`}
-                      src={assets.down_arrow_icon} alt="arrow icon" />
+                        className={`transform transition-transform ${
+                          openSections[index] ? "rotate-180" : ""
+                        }`}
+                        src={assets.down_arrow_icon}
+                        alt="arrow icon"
+                      />
                       <p className="font-medium md:text-base text-sm">
                         {chapter.chapterTitle}
                       </p>
@@ -158,6 +162,19 @@ const CourseDetails = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/*----------Course Description----------*/}
+          <div className="py-20 text-sm md:text-default">
+            <h3 className="text-xl font-semibold text-gray-800">
+              Course Description
+            </h3>
+            <p
+              className="pt-3 rich-text"
+              dangerouslySetInnerHTML={{
+                __html: courseData.courseDescription,
+              }}
+            ></p>
           </div>
         </div>
         {/*--------Right column----------*/}
