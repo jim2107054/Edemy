@@ -32,8 +32,7 @@ const CourseDetails = () => {
     fetchCourseData();
   }, [id, allCourses]);
 
-  //  //calculate the average rating of the course
-  // const rating = calculateRating(courseData);
+  
 
   // create a function to toggle the section open/close
   const toggleSection = (index) => {
