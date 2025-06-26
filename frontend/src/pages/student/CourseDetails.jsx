@@ -195,11 +195,11 @@ const CourseDetails = () => {
             </div>
             <div className="flex items-center gap-3 pt-2">
               <p className="text-gray-800 md:text-4xl text-2xl font-semibold">
-                {courseData.coursePrice -
+                {(courseData.coursePrice -
                   (
                     (courseData.discount * courseData.coursePrice) /
                     100
-                  ).toFixed(2)}
+                  )).toFixed(2)}
                 {currency}
               </p>
               <p className="md:text-lg text-gray-600">
