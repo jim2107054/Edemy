@@ -11,6 +11,7 @@ export const AppContextProvider = ({ children }) => {
 
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   //function to calculate average rating of a course
   const calculateRating = (course) => {
@@ -52,6 +53,13 @@ export const AppContextProvider = ({ children }) => {
     return totalLectures;
   };
 
+  //Fetch user enrolled courses
+  const fetchEnrolledCourses = async () => {
+    // This function would typically make an API call to fetch enrolled courses
+    // For now, we will use dummy data
+    setEnrolledCourses(dummyCourses);
+  };
+
   // Helper to determine star type: full, half, or empty
   const getStarType = (rating, index) => {
     // console.log("rating and index", rating, index);
@@ -67,6 +75,7 @@ export const AppContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchAllCourses();
+    fetchEnrolledCourses();// Fetch enrolled courses when the component mounts
   }, []);
 
   const value = {
@@ -80,6 +89,9 @@ export const AppContextProvider = ({ children }) => {
     calculateChapterTime,
     calculateCourseDuration,
     calculateNoOfLectures,
+    fetchEnrolledCourses,
+    enrolledCourses,
+    setEnrolledCourses
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
