@@ -5,6 +5,7 @@ import Footer from "./../../components/student/Footer";
 import Loading from "./../../components/student/Loading";
 import { assets } from "../../assets/assets";
 import humanizeDuration from "humanize-duration";
+import YouTube from "react-youtube";
 
 const CourseDetails = () => {
   //Get course id from url
@@ -12,6 +13,7 @@ const CourseDetails = () => {
   const [courseData, setCourseData] = useState(null);
   const [openSections, setOpenSections] = useState({});
   const [isAlreadyEnrolled, setIsAlreadyEnrolled] = useState(false);
+  const [playerData, setPlayerData] = useState(null)
 
   const {
     calculateRating,
@@ -32,7 +34,7 @@ const CourseDetails = () => {
 
   useEffect(() => {
     fetchCourseData();
-  }, [id, allCourses]);
+  }, [allCourses]);
 
   // create a function to toggle the section open/close
   const toggleSection = (index) => {
@@ -142,7 +144,11 @@ const CourseDetails = () => {
                             <p className="">{lecture.lectureTitle}</p>
                             <div className="flex gap-2 items-center">
                               {lecture.isPreviewFree && (
-                                <p className="text-blue-500 cursor-pointer">
+                                <p 
+                                onClick={()=>setPlayerData({
+                                  videoId: lecture.lectureUrl.split('/').pop()
+                                })}
+                                className="text-blue-500 cursor-pointer">
                                   Preview
                                 </p>
                               )}
@@ -181,7 +187,11 @@ const CourseDetails = () => {
           className="max-w-course-card z-10 shadow-custom-card rounded-t md:rounded-none overflow-hidden bg-white min-w-[300px]
         sm:min-w-[420px]"
         >
-          <img src={courseData.courseThumbnail} alt="" />
+          {
+            playerData ? (
+              <YouTube videoId={playerData.videoId} opts={{playerVars:{autoplay:1}}} iframeClassName="w-full aspect-video"/>
+            ):(<img src={courseData.courseThumbnail} alt="" />)
+          }
           <div className="p-5">
             <div className="flex items-center gap-2">
               <img
