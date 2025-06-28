@@ -121,7 +121,7 @@ const Player = () => {
           {/*----------Give Rating to the course----------*/}
           <div className="flex items-center gap-2 py-3 mt-10">
             <h1 className="text-xl font-semibold">Rate this Course:</h1>
-            <Rating/>
+            <Rating initialRating={0}/>
           </div>
         </div>
         {/*----------Right column----------*/}
