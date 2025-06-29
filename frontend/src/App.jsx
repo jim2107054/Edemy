@@ -12,7 +12,7 @@ import AddCourse from "./pages/instructor/AddCourse";
 import MyCourses from "./pages/instructor/MyCourses";
 import StudentsEnrolled from "./pages/instructor/StudentsEnrolled";
 import Navbar from "./components/student/Navbar";
-
+import "quill/dist/quill.snow.css";
 
 const App = () => {
   //if are we in the instructor route then we need to show the instructor navbar
