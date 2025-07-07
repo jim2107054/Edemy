@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./configs/mongodb.js";
+import { clerkWebhooks } from "./controllers/webhooks.js";
 dotenv.config();
 
 const app = express();
@@ -14,9 +15,10 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Backend Server is Running.....");
 });
+app.post("/clerk", express.json(), clerkWebhooks);
 
 // Start the server
 app.listen(PORT, () => {
-  connectDB()
+  connectDB();
   console.log(`Server is running on port ${PORT}`);
 });
