@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import connectDB from "./configs/mongodb.js";
 dotenv.config();
 
 const app = express();
@@ -11,10 +12,11 @@ app.use(cors());
 
 // create a simple route
 app.get("/", (req, res) => {
-  res.send("Backend Server is Running");
+  res.send("Backend Server is Running.....");
 });
 
 // Start the server
 app.listen(PORT, () => {
+  connectDB()
   console.log(`Server is running on port ${PORT}`);
 });
