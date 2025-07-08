@@ -46,7 +46,7 @@ export const clerkWebhooks = async (req, res) => {
         };
 
         // Update the user in the database
-        await User.findByIdAndDelete(data.id, userData);
+        await User.findByIdAndUpdate(data.id, userData);
         res.json({ success: true, message: "User updated successfully" });
         break;
       }
