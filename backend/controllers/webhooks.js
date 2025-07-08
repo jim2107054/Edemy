@@ -6,8 +6,9 @@ export const clerkWebhooks = async (req, res) => {
   try {
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
-    // Verify the webhook
-    await whook.verify(JSON.stringify(req.body), {
+    // Verify the webhook using the raw body
+    const payload = req.rawBody || JSON.stringify(req.body);
+    whook.verify(payload, {
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
@@ -27,9 +28,10 @@ export const clerkWebhooks = async (req, res) => {
           imageUrl: data.image_url,
         };
         // Check if user already exists
-        const existingUser = await User.findById(userData._id);
+        const existingUser = await User.findById(data.id);
         if (existingUser) {
-          return res.json({ success: false, message: "User already exists" });
+          res.json({ success: false, message: "User already exists" });
+          break;
         }
         // Create a new user
         await User.create(userData);
@@ -58,9 +60,9 @@ export const clerkWebhooks = async (req, res) => {
         res.json({ success: true, message: "User deleted successfully" });
         break;
       }
-
-      default:
+      default: {
         break;
+      }
     }
   } catch (error) {
     console.log(error.message);
