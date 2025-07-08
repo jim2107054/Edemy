@@ -5,10 +5,11 @@ import User from "../models/user.js";
 export const clerkWebhooks = async (req, res) => {
   try {
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
+    
 
     // Verify the webhook using the raw body
-    const payload = req.rawBody || JSON.stringify(req.body);
-    whook.verify(payload, {
+    // const payload = req.rawBody || JSON.stringify(req.body);
+    await whook.verify(JSON.stringify(req.body), {
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
@@ -27,12 +28,12 @@ export const clerkWebhooks = async (req, res) => {
           name: data.first_name + " " + data.last_name,
           imageUrl: data.image_url,
         };
-        // Check if user already exists
-        const existingUser = await User.findById(data.id);
-        if (existingUser) {
-          res.json({ success: false, message: "User already exists" });
-          break;
-        }
+        // // Check if user already exists
+        // const existingUser = await User.findById(data.id);
+        // if (existingUser) {
+        //   res.json({ success: false, message: "User already exists" });
+        //   break;
+        // }
         // Create a new user
         await User.create(userData);
         res.json({ success: true, message: "User created successfully" });
