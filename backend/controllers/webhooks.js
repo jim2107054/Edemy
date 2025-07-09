@@ -1,5 +1,7 @@
 import { Webhook } from "svix";
 import User from "../models/user.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 // API controller function to Manage Clerk User with Database
 export const clerkWebhooks = async (req, res) => {
@@ -28,12 +30,7 @@ export const clerkWebhooks = async (req, res) => {
           name: data.first_name + " " + data.last_name,
           imageUrl: data.image_url,
         };
-        // // Check if user already exists
-        // const existingUser = await User.findById(data.id);
-        // if (existingUser) {
-        //   res.json({ success: false, message: "User already exists" });
-        //   break;
-        // }
+        // => Can't store user data from clerk directly in the database. need to fix it.
         // Create a new user
         await User.create(userData);
         res.json({ success: true, message: "User created successfully" });
