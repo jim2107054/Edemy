@@ -16,7 +16,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Backend Server is Running.....");
 });
-app.post("/clerk", express.json(), clerkWebhooks);
+app.post("/clerk", express.raw({ type: "application/json" }), clerkWebhooks);
 
 // Start the server
 app.listen(PORT, () => {

@@ -10,7 +10,7 @@ export const clerkWebhooks = async (req, res) => {
 
     // Verify the webhook using the raw body
     // const payload = req.rawBody || JSON.stringify(req.body);
-    await whook.verify(JSON.stringify(req.body), {
+    await whook.verify(req.body, {
       "svix-id": req.headers["svix-id"],
       "svix-timestamp": req.headers["svix-timestamp"],
       "svix-signature": req.headers["svix-signature"],
@@ -22,7 +22,7 @@ export const clerkWebhooks = async (req, res) => {
     // Handle the event based on its type(user.created, user.updated, user.deleted)
     switch (type) {
       // Handle user created event
-      case 'user.created': {
+      case "user.created": {
         const userData = {
           _id: data.id,
           email: data.email_addresses[0].email_address,
@@ -37,7 +37,7 @@ export const clerkWebhooks = async (req, res) => {
       }
 
       // Handle user updated event
-      case 'user.updated': {
+      case "user.updated": {
         const userData = {
           email: data.email_addresses[0].email_address,
           name: data.first_name + " " + data.last_name,
@@ -51,16 +51,15 @@ export const clerkWebhooks = async (req, res) => {
       }
 
       // Handle user deleted event
-      case 'user.deleted' : {
+      case "user.deleted": {
         // Detete the user from the database
         await User.findByIdAndDelete(data.id);
         res.json({});
         break;
       }
       default: {
-          break;
-        }
-
+        break;
+      }
     }
   } catch (error) {
     console.log(error.message);
